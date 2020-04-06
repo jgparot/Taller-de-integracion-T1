@@ -10,14 +10,15 @@
 
     </div>
     <div class="col-6">
+    <br>
       <h1>Locación: {{ locacion['name'] }}</h1>
+    <br>
+<h3>Tipo: {{ locacion['type'] }}</h3>
 
-<h2>Tipo: {{ locacion['type'] }}</h2>
+<h3>Dimensión: {{ locacion['dimension'] }}</h3>
 
-<h2>Dimensión: {{ locacion['dimension'] }}</h2>
-
-<h2>Residentes</h2>
-<table class="table">
+<h3>Residentes</h3>
+<table class="table table-hover">
   <tbody>
   {% for item in residentes %}
 

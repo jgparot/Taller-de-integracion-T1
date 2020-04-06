@@ -1,19 +1,24 @@
 {% extends 'base.html' %}
 {% block title %}
-    Personaje
+    Personajes
 {% endblock %}
 {% block content %}
 
 <div class="container">
   <div class="row">
     <div class="col">
+    <br>
+    <br>
+    <br>
 
+    <img src="{{ personaje['image'] }}" alt="Personaje">
     </div>
-    <div class="col-6">
-
+    <div class="col-8">
+    <br>
+    <br>
+    <br>
 <h1>{{ personaje['name'] }}</h1>
-
-<img src="{{ personaje['image'] }}" alt="Personaje">
+<br>
 
 <h2>Estatus: {{ personaje['status'] }}</h2>
 
@@ -35,7 +40,16 @@
 <h2>Locación Actual: <a href="{{ url_for('locacion',name=l_a|string)}}">{{personaje['location']['name']}}</a></h2>
 {% endif %}
 
-<h2>Episodios en los que aparece</h2>
+    </div>
+  </div>
+  <div class="row">
+  <div class="col">
+  </div>
+    <div class="col-6">
+    <br>
+    <br>
+    <br>
+        <h2>Episodios en los que aparece</h2>
 <table class="table">
   <tbody>
   {% for item in episodios %}
@@ -47,8 +61,7 @@
   </tbody>
 </table>
     </div>
-    <div class="col">
-    </div>
+      <div class="col"></div>
   </div>
 
 </div>

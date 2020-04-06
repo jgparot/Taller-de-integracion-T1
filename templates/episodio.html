@@ -10,30 +10,43 @@
 
     </div>
     <div class="col-6">
-      <h1>{{ episodio['name'] }}</h1>
+        <br>
+      <h1>Episodio: {{ episodio['name'] }}</h1>
+        <br>
+<h3>Lanzmiento: {{ episodio['air_date'] }}</h3>
 
-<h2>Fecha de lanzmiento: {{ episodio['air_date'] }}</h2>
+<h3>Código: {{ episodio['episode'] }}</h3>
 
-<h2>Número de episodio: {{ episodio['episode'] }}</h2>
-<h2>Personajes involucrados</h2>
+<h3>Personajes involucrados</h3>
+    </div>
+      <div class="col">
 
-<table class="table">
+    </div>
+  </div>
 
-  <tbody>
-  {% for item in personajes %}
+<div class="row">
+    <div class="col-3">
+
+    </div>
+    <div class="col-5">
+
+    <table class="table table-hover">
+
+    <tbody>
+    {% for item in personajes %}
     <tr>
-      <td><a href="{{ url_for('personaje',name= item['id']|string)}}">{{item['name']}}</a>
-</td>
+    <td><a href="{{ url_for('personaje',name= item['id']|string)}}">{{item['name']}}</a>
+    </td>
     </tr>
-  {% endfor %}
-  </tbody>
-</table>
+    {% endfor %}
+    </tbody>
+    </table>
 
     </div>
     <div class="col">
 
     </div>
-  </div>
+    </div>
 
 
 
