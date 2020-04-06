@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-    Personajes
+    Personaje
 {% endblock %}
 {% block content %}
 
@@ -20,6 +20,9 @@
 <h2>Especie: {{ personaje['species'] }}</h2>
 
 <h2>Género: {{ personaje['gender'] }}</h2>
+
+<h2>Tipo: {{ personaje['type'] }}</h2>
+
 {% if personaje['origin']['name'] == 'unknown' %}
 <h2>Origen: {{personaje['origin']['name']}}</h2>
 {% else %}

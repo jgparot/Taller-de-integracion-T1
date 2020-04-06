@@ -3,9 +3,9 @@ import requests
 
 app = Flask(__name__)
 
-r = requests.get('https://rickandmortyapi.com/api/episode/')
-#pedir_personajes = requests.get('https://rickandmortyapi.com/api/character/')
-#pedir_lugares = requests.get('https://rickandmortyapi.com/api/location/')
+r = requests.get('https://integracion-rick-morty-api.herokuapp.com/api/episode/')
+#pedir_personajes = requests.get('https://integracion-rick-morty-api.herokuapp.com/api/character/')
+#pedir_lugares = requests.get('https://integracion-rick-morty-api.herokuapp.com/api/location/')
 r_1 = r.json()
 #r_2 = pedir_personajes.json()
 #r_3 = pedir_lugares.json()
@@ -18,15 +18,15 @@ num = int(r_1['info']['pages'])
 #num_pages = int(r_2['info']['pages'])
 #num_pages_2 = int(r_3['info']['pages'])
 
-r_sanfran = requests.get("https://rickandmortyapi.com/api/episode/", params={'page': 2}).json()
+r_sanfran = requests.get("https://integracion-rick-morty-api.herokuapp.com/api/episode/", params={'page': 2}).json()
 episodios.extend(r_sanfran['results'])
 
 #for page in range(1, num_pages -1):
- #   r_sanfran = requests.get("https://rickandmortyapi.com/api/character/", params={'page': page}).json()
+ #   r_sanfran = requests.get("https://integracion-rick-morty-api.herokuapp.com/api/character/", params={'page': page}).json()
   #  personajes.extend(r_sanfran['results'])
 
 #for page in range(1, num_pages_2 -1):
- #  r_sanfran_2 = requests.get("https://rickandmortyapi.com/api/character/", params={'page': page}).json()
+ #  r_sanfran_2 = requests.get("https://integracion-rick-morty-api.herokuapp.com/api/character/", params={'page': page}).json()
  #   lugares.extend(r_sanfran_2['results'])
 
 
@@ -36,11 +36,11 @@ def separar_ulr(lista):
 
 def manejar_busqueda(palabra, data):
     # episodios con la palabra
-    r = requests.get(f'https://rickandmortyapi.com/api/{data}/').json()
+    r = requests.get(f'https://integracion-rick-morty-api.herokuapp.com/api/{data}/').json()
     numero = (r["info"])["pages"]
     episodios = []
     for page in range(1, numero + 1):
-        r_sanfran_2 = requests.get(f"https://rickandmortyapi.com/api/{data}/",
+        r_sanfran_2 = requests.get(f"https://integracion-rick-morty-api.herokuapp.com/api/{data}/",
                                    params={'page': page}).json()
         episodios.extend(r_sanfran_2['results'])
     final = [elemento for elemento in episodios if palabra.lower()
@@ -75,11 +75,11 @@ def episodio(name):
         return render_template('busqueda.html', personajes=listas[0],
                                capitulos=listas[1], locaciones=listas[2], data=data)
     else:
-        e = requests.get(f'https://rickandmortyapi.com/api/episode/{str(name)}')
+        e = requests.get(f'https://integracion-rick-morty-api.herokuapp.com/api/episode/{str(name)}')
         e_1 = e.json()
         personajes_list = e_1['characters']
         par = separar_ulr(personajes_list)
-        pedir_personajes = requests.get(f'https://rickandmortyapi.com/api/'
+        pedir_personajes = requests.get(f'https://integracion-rick-morty-api.herokuapp.com/api/'
                                         f'character/{par}').json()
         return render_template('episodio.html', episodio=e_1,
                                personajes=pedir_personajes)
@@ -92,7 +92,7 @@ def personaje(name):
       return render_template('busqueda.html', personajes=listas[0],
                              capitulos=listas[1], locaciones=listas[2], data=data)
   else:
-      p = requests.get(f'https://rickandmortyapi.com/api/character/{str(name)}')
+      p = requests.get(f'https://integracion-rick-morty-api.herokuapp.com/api/character/{str(name)}')
       p_1 = p.json()
       episodes_list = p_1['episode']
       locaciones_actual = p_1['location']
@@ -101,9 +101,9 @@ def personaje(name):
                  (str(locaciones_origen['url']).split('/'))[-1]
       par = separar_ulr(episodes_list)
       #par_2 = separar_ulr(locaciones_list)
-      pedir_episodios = requests.get(f'https://rickandmortyapi.com/api/'  
+      pedir_episodios = requests.get(f'https://integracion-rick-morty-api.herokuapp.com/api/'  
                                         f'episode/{par}').json()
-      #pedir_locaciones = requests.get(f'https://rickandmortyapi.com/api/'
+      #pedir_locaciones = requests.get(f'https://integracion-rick-morty-api.herokuapp.com/api/'
        #                                 f'location/{par}')
       return render_template('personaje.html', personaje=p_1,
                                episodios=pedir_episodios, locacion_actual=locaciones_actual,
@@ -116,14 +116,14 @@ def locacion(name):
        data = request.form["b"]
        listas = juntar_busquedas(data)
        return render_template('busqueda.html', personajes=listas[0],
-                              capitulos=listas[1], locaiones=listas[2], data=data)
+                              capitulos=listas[1], locaciones=listas[2], data=data)
 
    else:
-       l = requests.get(f'https://rickandmortyapi.com/api/location/{str(name)}')
+       l = requests.get(f'https://integracion-rick-morty-api.herokuapp.com/api/location/{str(name)}')
        l_1 = l.json()
        residentes_list = l_1['residents']
        par = separar_ulr(residentes_list)
-       pedir_personajes = requests.get(f'https://rickandmortyapi.com/api/'
+       pedir_personajes = requests.get(f'https://integracion-rick-morty-api.herokuapp.com/api/'
                                        f'character/{par}').json()
        return render_template('locacion.html', locacion=l_1, residentes=pedir_personajes)
 
